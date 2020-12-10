@@ -1,9 +1,10 @@
 # jekyll
 FROM jekyll/builder:latest as jekyll
 
-COPY jekyll-proj/ /tmp
 WORKDIR /tmp/jekyll-proj
-RUN chown -R jekyll:jekyll /tmp
+
+COPY jekyll-proj/ .
+RUN chown -R jekyll:jekyll /tmp/jekyll-proj
 RUN gem install bundler
 RUN bundle install
 RUN bundle exec jekyll build
@@ -12,4 +13,4 @@ RUN bundle exec jekyll build
 FROM nginx:alpine as nginx
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=jekyll /tmp/jekyll-proj/_site/ /var/www/public/
+COPY --from=jekyll /tmp/jekyll-proj/_site/ /usr/share/nginx/html
