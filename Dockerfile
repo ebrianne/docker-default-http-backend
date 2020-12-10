@@ -12,5 +12,6 @@ RUN bundle exec jekyll build
 # nginx
 FROM nginx:alpine as nginx
 
+RUN rm /usr/share/nginx/html/index.html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=jekyll /tmp/jekyll-proj/_site/ /usr/share/nginx/html
