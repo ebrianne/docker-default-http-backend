@@ -1,17 +1,24 @@
 # jekyll
-FROM jekyll/builder:latest as jekyll
+FROM ruby:2.7.2-alpine3.12 as jekyll
 
 WORKDIR /tmp/jekyll-proj
 
 COPY jekyll-proj/ .
-RUN chown -R jekyll:jekyll /tmp/jekyll-proj
-RUN gem install bundler
-RUN bundle install
-RUN bundle exec jekyll build
+RUN apk add --no-cache build-base gcc bash cmake git nodejs
+RUN ruby --version && gem install jekyll && gem install bundler && bundle install && bundle exec jekyll build
 
 # nginx
-FROM nginx:alpine as nginx
+FROM nginx:alpine
 
 RUN rm /usr/share/nginx/html/index.html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=jekyll /tmp/jekyll-proj/_site/ /usr/share/nginx/html
+
+## add permissions for nginx user
+RUN chown -R nginx:nginx /var/cache/nginx && chown -R nginx:nginx /var/log/nginx && chown -R nginx:nginx /etc/nginx/conf.d
+RUN touch /var/run/nginx.pid && chown -R nginx:nginx /var/run/nginx.pid
+
+USER nginx
+
+CMD nginx -g 'daemon off;'
