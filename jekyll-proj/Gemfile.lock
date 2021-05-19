@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.4.4)
+    activesupport (5.2.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -9,7 +9,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     colorator (1.1.0)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     css_press (0.3.2)
       csspool-st (= 3.1.2)
       json
@@ -18,11 +18,11 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
-    execjs (2.7.0)
+    execjs (2.8.1)
     extras (0.3.0)
       forwardable-extended (~> 2.5)
-    fastimage (2.2.1)
-    ffi (1.14.2)
+    fastimage (2.2.3)
+    ffi (1.15.0)
     forwardable-extended (2.6.0)
     html_press (0.8.2)
       htmlentities
@@ -32,7 +32,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    jekyll (3.9.0)
+    jekyll (3.9.1)
       addressable (~> 2.4)
       colorator (~> 1.0)
       em-websocket (~> 0.5)
@@ -64,22 +64,22 @@ GEM
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     json (2.5.1)
-    kramdown (2.3.0)
+    kramdown (2.3.1)
       rexml
     liquid (4.0.3)
     liquid-tag-parser (1.9.0)
       extras (~> 0.3)
       liquid (>= 3.0, < 5.0)
-    listen (3.4.0)
+    listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.3.6)
-    minitest (5.14.3)
+    minitest (5.14.4)
     multi_css (0.1.0)
       css_press
     multi_js (0.1.0)
       uglifier (~> 2)
-    nokogiri (1.11.1-x86_64-darwin)
+    nokogiri (1.11.4-x86_64-linux)
       racc (~> 1.4)
     octopress-hooks (2.6.2)
       jekyll (>= 2.0)
@@ -92,10 +92,10 @@ GEM
     public_suffix (4.0.6)
     racc (1.5.2)
     rack (2.2.3)
-    rb-fsevent (0.10.4)
+    rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rouge (3.26.0)
     safe_yaml (1.0.5)
     sass (3.7.4)
@@ -114,14 +114,13 @@ GEM
       json (>= 1.8.0)
 
 PLATFORMS
-  x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
-  jekyll
+  jekyll (~> 3.9)
   jekyll-assets
   octopress-minify-html
   sprockets (~> 3.7)
-  tzinfo-data
 
 BUNDLED WITH
-   2.2.4
+   2.2.17

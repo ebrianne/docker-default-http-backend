@@ -1,5 +1,5 @@
 # jekyll
-FROM ruby:2.7.2-alpine3.12 as jekyll
+FROM ruby:2.7.3-alpine3.13 as jekyll
 
 WORKDIR /tmp/jekyll-proj
 
@@ -8,7 +8,7 @@ RUN apk add --no-cache build-base gcc bash cmake git nodejs
 RUN ruby --version && gem install jekyll && gem install bundler && bundle install && bundle exec jekyll build
 
 # nginx
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 RUN rm /usr/share/nginx/html/index.html
 COPY default.conf /etc/nginx/conf.d/default.conf
