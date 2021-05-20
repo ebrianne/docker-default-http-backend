@@ -10,10 +10,10 @@ RUN ruby --version && gem install jekyll && gem install bundler && bundle instal
 # nginx
 FROM nginx:stable-alpine
 
-RUN rm /usr/share/nginx/html/index.html
+RUN rm /usr/share/nginx/html/index.html && mkdir -p /usr/share/nginx/html/nginx-error-pages
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=jekyll /tmp/jekyll-proj/_site/ /usr/share/nginx/html
+COPY --from=jekyll /tmp/jekyll-proj/_site/ /usr/share/nginx/html/nginx-error-pages
 
 ## add permissions for nginx user
 RUN chown -R nginx:nginx /var/cache/nginx && chown -R nginx:nginx /var/log/nginx && chown -R nginx:nginx /etc/nginx/conf.d
