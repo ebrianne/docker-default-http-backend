@@ -8,7 +8,7 @@ RUN apk add --no-cache build-base gcc bash cmake git nodejs
 RUN ruby --version && gem install jekyll && gem install bundler && bundle install && bundle exec jekyll build
 
 # nginx
-FROM nginx:stable-alpine
+FROM nginx:mainline-alpine
 
 RUN rm /usr/share/nginx/html/index.html && mkdir -p /usr/share/nginx/html/nginx-error-pages
 COPY default.conf /etc/nginx/conf.d/default.conf
